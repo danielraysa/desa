@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\Master\UserController;
+use App\Http\Controllers\Master\JenisSuratController;
+
 Route::get('', [PagesController::class, 'home']);
 Route::get('surat', [PagesController::class, 'surat']);
 Route::get('berita', [PagesController::class, 'berita']);
@@ -22,9 +27,9 @@ Route::get('pemdes', [PagesController::class, 'pemdes']);
 Route::get('galeri', [PagesController::class, 'galeri']);
 Route::get('statistik', [PagesController::class, 'statistik']);
 Route::get('pengaduan', [PagesController::class, 'pengaduan']);
-Route::get('skck', [FormController::class, 'skck']);
-Route::get('tidak-mampu', [FormController::class, 'tidakMampu']);
-Route::get('izin-keramaian', [FormController::class, 'izinKeramaian']);
+Route::get('skck', [FormController::class, 'skck'])->name('ktp-skck');;
+Route::get('tidak-mampu', [FormController::class, 'tidakMampu'])->name('ktp-tidak-mampu');;
+Route::get('izin-keramaian', [FormController::class, 'izinKeramaian'])->name('ktp-izin-keramaian');;
 Route::get('sukses', [FormController::class, 'sukses']);
 Route::post('cek-ktp-skck', [FormController::class, 'cekKtpSkck'])->name('cek-ktp-skck');
 Route::post('cek-ktp-tidak-mampu', [FormController::class, 'cekKtpTidakMampu'])->name('cek-ktp-tidak-mampu');
@@ -34,10 +39,13 @@ Route::post('cek-ktp-izin-keramaian', [FormController::class, 'cekKtpIzinKeramai
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('admin')->group(function () {
-        Route::get('home', [App\Http\Controllers\HomeController::class, 'admin']);
+        Route::get('home', [HomeController::class, 'admin']);
+        Route::resource('user', UserController::class);
+        Route::resource('jenis-surat', JenisSuratController::class);
+        Route::resource('permintaan-surat', JenisSuratController::class);
+        Route::resource('penduduk', PendudukController::class);
         /* Route::resource('konfigurasi', 'KonfigurasiController');
         Route::resource('konstrain', 'KonstrainController');
-        Route::resource('user', 'UserController');
         Route::resource('siswa', 'SiswaController');
         Route::resource('guru', 'GuruController');
         Route::resource('mata-pelajaran', 'MataPelajaranController');
@@ -50,4 +58,4 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('penilaian', 'NilaiSiswaController'); */
     });
 });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

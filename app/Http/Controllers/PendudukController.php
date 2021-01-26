@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Master;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\JenisSurat;
+use App\Models\Penduduk;
+use App\Models\User;
 
-class JenisSuratController extends Controller
+class PendudukController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class JenisSuratController extends Controller
     public function index()
     {
         //
-        $jenis_surat = JenisSurat::all();
-        return view('data-master.jenis-surat', compact('jenis_surat'));
+        $penduduk = Penduduk::all();
+        return view('admin.penduduk', compact('penduduk'));
     }
 
     /**
@@ -39,12 +39,24 @@ class JenisSuratController extends Controller
     public function store(Request $request)
     {
         //
-        $jenis_surat = JenisSurat::create([
-            'nama_surat' => $request->nama_surat,
-            'kegunaan' => $request->kegunaan,
-            'status' => 'aktif',
+        if($request->user_create){
+            $user = User::create([
+                'name' => $request->nama_lengkap,
+                'email' => $request->username,
+                'password' => bcrypt($request->password),
+            ]);
+        }
+        $penduduk = Penduduk::create([
+            'user_id' => isset($user) ? $user->id : null,
+            'nik' => $request->nik,
+            'no_kk' => $request->no_kk,
+            'nama_lengkap' => $request->nama_lengkap,
+            'alamat' => $request->alamat,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
         ]);
-        return redirect()->route('jenis-surat.index')->with('status', 'Berhasil menambah data');
+        return redirect()->route('penduduk.index')->with('status', 'Berhasil menambah data');
     }
 
     /**
@@ -79,11 +91,6 @@ class JenisSuratController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $jenis_surat = JenisSurat::find($id)->update([
-            'email' => $request->nama_surat,
-            'kegunaan' => $request->kegunaan,
-        ]);
-        return redirect()->route('jenis-surat.index')->with('status', 'Berhasil menambah data');
     }
 
     /**

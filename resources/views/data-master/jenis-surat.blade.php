@@ -1,4 +1,4 @@
-@extends('layouts.admin', ['halaman' => 'Data User'])
+@extends('layouts.admin', ['halaman' => 'Data Jenis Surat'])
 @push('css')
 <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
@@ -24,13 +24,13 @@
         "autoWidth": false,
         "responsive": true,
         });
+
     });
 </script>
 @endpush
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        @include('data-master.alert')
         <div class="card">
             <div class="card-body">
                 <button type="button" class="btn btn-primary float-lg-left" data-toggle="modal" data-target="#modalTambah">
@@ -40,17 +40,17 @@
                     <thead>
                         <tr class="text-center">
                             <th>No.</th>
-                            <th>Nama User</th>
-                            <th>Email</th>
+                            <th>Jenis Surat</th>
+                            <th>Kegunaan</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $item)
+                        @foreach ($jenis_surat as $item)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->nama_surat }}</td>
+                            <td>{{ $item->kegunaan }}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalEdit-{{ $item->id }}" data-id="{{ $item->id }}"><i class="fas fa-edit"></i> Edit</button>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalHapus-{{ $item->id }}" data-id="{{ $item->id }}"><i class="fas fa-trash"></i> Hapus</button>
@@ -66,9 +66,9 @@
 <!-- /.row -->
 <!-- Modal -->
 <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="{{ route('user.store') }}" method="POST">
+            <form action="{{ route('jenis-surat.store') }}" method="POST">
             @csrf
             <div class="modal-header">
                 <h5 class="modal-title">Tambah Data</h5>
@@ -78,16 +78,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Nama</label>
-                    <input type="text" name="nama" class="form-control" />
+                    <label>Nama Surat</label>
+                    <input type="text" name="nama_surat" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" name="email" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control" />
+                    <label>Kegunaan</label>
+                    <textarea name="kegunaan" class="form-control"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -98,11 +94,11 @@
         </div>
     </div>
 </div>
-@foreach ($users as $item)
+@foreach ($jenis_surat as $item)
 <div class="modal fade" id="modalEdit-{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="{{ route('user.update', $item->id) }}" method="POST">
+            <form action="{{ route('jenis-surat.update', $item->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="modal-header">
@@ -113,16 +109,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Nama</label>
-                    <input type="text" name="nama" value="{{ $item->name }}" readonly class="form-control" />
+                    <label>Nama Surat</label>
+                    <input type="text" name="nama_surat" class="form-control" value="{{ $item->nama_surat }}" />
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" name="email" value="{{ $item->email }}" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control" />
+                    <label>Kegunaan</label>
+                    <textarea name="kegunaan" class="form-control">{{ $item->kegunaan }}</textarea>
                 </div>
             </div>
             <div class="modal-footer">

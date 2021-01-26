@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -15,6 +16,8 @@ class UserController extends Controller
     public function index()
     {
         //
+        $users = User::all();
+        return view('data-master.user', compact('users'));
     }
 
     /**
@@ -36,6 +39,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $user = User::create([
+            'name' => $request->nama,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+        return redirect()->route('user.index')->with('status', 'Berhasil menambah data');
     }
 
     /**
@@ -70,6 +79,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::find($id)->update([
+            'email' => $request->email,
+            // 'password' => bcrypt($request->password),
+        ]);
+        return redirect()->route('user.index')->with('status', 'Berhasil menambah data');
     }
 
     /**

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\userDetail;
-use App\Models\permintaan_surat;
+use App\Models\Penduduk;
+use App\Models\PermintaanSurat;
 class FormController extends Controller
 {
     public function skck(){
@@ -23,10 +23,10 @@ class FormController extends Controller
         $this->validate($request, [
             'no_ktp' => 'required',
         ]);
-        $user = userDetail::where('no_ktp',$request->no_ktp)->first();
+        $user = Penduduk::where('nik',$request->no_ktp)->first();
         if($user){
             \DB::beginTransaction();
-            $permintaan_surat = new permintaan_surat;
+            $permintaan_surat = new PermintaanSurat;
             $permintaan_surat->no_ktp = $request->no_ktp;
             $permintaan_surat->user_id = $user->id;
             $permintaan_surat->tipe_surat = 'SKCK';
@@ -38,19 +38,20 @@ class FormController extends Controller
                 'user' => $user
                 ]);
         }else{
-            return view('form/skck', [
-                'error' => 'User tidak ditemukan'
-                ]);
+            /* return view('form/skck', [
+                'error' => 'Nomor induk/KTP tidak ditemukan'
+                ]); */
+            return redirect()->route('ktp-skck')->with('error', 'Nomor induk/KTP tidak ditemukan');
         }
     }
     public function cekKtpTidakMampu(Request $request){
         $this->validate($request, [
             'no_ktp' => 'required',
         ]);
-        $user = userDetail::where('no_ktp',$request->no_ktp)->first();
+        $user = Penduduk::where('nik',$request->no_ktp)->first();
         if($user){
             \DB::beginTransaction();
-            $permintaan_surat = new permintaan_surat;
+            $permintaan_surat = new PermintaanSurat;
             $permintaan_surat->no_ktp = $request->no_ktp;
             $permintaan_surat->user_id = $user->id;
             $permintaan_surat->tipe_surat = 'tidak-mampu';
@@ -63,7 +64,7 @@ class FormController extends Controller
                 ]);
         }else{
             return view('form/tidak-mampu', [
-                'error' => 'User tidak ditemukan'
+                'error' => 'Nomor induk/KTP tidak ditemukan'
                 ]);
         }
     }
@@ -71,10 +72,10 @@ class FormController extends Controller
         $this->validate($request, [
             'no_ktp' => 'required',
         ]);
-        $user = userDetail::where('no_ktp',$request->no_ktp)->first();
+        $user = Penduduk::where('nik',$request->no_ktp)->first();
         if($user){
             \DB::beginTransaction();
-            $permintaan_surat = new permintaan_surat;
+            $permintaan_surat = new PermintaanSurat;
             $permintaan_surat->no_ktp = $request->no_ktp;
             $permintaan_surat->user_id = $user->id;
             $permintaan_surat->tipe_surat = 'izin-keramaian';
@@ -87,7 +88,7 @@ class FormController extends Controller
                 ]);
         }else{
             return view('form/tidak-mampu', [
-                'error' => 'User tidak ditemukan'
+                'error' => 'Nomor induk/KTP tidak ditemukan'
                 ]);
         }
 	}
