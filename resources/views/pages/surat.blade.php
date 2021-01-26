@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
 @section('title', 'Ndesoo - Layanan Surat')
 
@@ -41,7 +41,7 @@
                       </div>
                     </div>
                   </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>

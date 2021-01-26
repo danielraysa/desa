@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
 @section('title', 'Ndesoo')
 
@@ -12,13 +12,13 @@
                 <hr class="divider my-4" />
             </div>
             <div class="col-lg-8 align-self-baseline">
-                <h5 class="text-white mb-5 text-light">Sistem Informasi dan Website <b>Desa</b> Terintegrasi</h5>         
+                <h5 class="text-white mb-5 text-light">Sistem Informasi dan Website <b>Desa</b> Terintegrasi</h5>
                 <a class="btn btn-primary btn-xl js-scroll-trigger" href="#surat">Pelajari Lebih Lanjut</a>
             </div>
         </div>
     </div>
 </header>
-        
+
 <!-- Surat-->
 <section class="page-section bg-primary" id="surat">
     <div class="container">
