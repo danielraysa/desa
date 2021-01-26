@@ -16,7 +16,7 @@ class CreateLevelUser extends Migration
         Schema::create('level_user', function (Blueprint $table) {
             $table->id();
             $table->string('nama_level');
-            $table->int('tingkat_level');
+            $table->integer('tingkat_level');
             $table->timestamps();
         });
     }

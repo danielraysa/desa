@@ -136,27 +136,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link {{ Route::currentRouteName() == 'konstrain.index' ? 'active' : '' }}">
-                                        <i class="fas fa-balance-scale nav-icon"></i>
-                                        <p>Konstrain Penjadwalan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="#" class="nav-link {{ Route::currentRouteName() == 'semester.index' ? 'active' : '' }}">
                                         <i class="far fa-calendar-alt nav-icon"></i>
-                                        <p>Semester</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link {{ Route::currentRouteName() == 'kelas.index' ? 'active' : '' }}">
-                                        <i class="fab fa-buffer nav-icon"></i>
-                                        <p>Kelas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link {{ Route::currentRouteName() == 'mata-pelajaran.index' ? 'active' : '' }}">
-                                        <i class="fas fa-book nav-icon"></i>
-                                        <p>Mata Pelajaran</p>
+                                        <p>Jenis Surat</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -166,21 +148,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link {{ Route::currentRouteName() == 'guru.index' ? 'active' : '' }}">
-                                        <i class="fas fa-chalkboard-teacher nav-icon"></i>
-                                        <p>Guru</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link {{ Route::currentRouteName() == 'siswa.index' ? 'active' : '' }}">
-                                        <i class="fas fa-users nav-icon"></i>
-                                        <p>Siswa</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link {{ Route::currentRouteName() == 'penempatan.index' ? 'active' : '' }}">
-                                        <i class="fas fa-boxes nav-icon"></i>
-                                        <p>Penempatan</p>
+                                    <a href="#" class="nav-link {{ Route::currentRouteName() == 'user.index' ? 'active' : '' }}">
+                                        <i class="fas fa-user-tie nav-icon"></i>
+                                        <p>Level User</p>
                                     </a>
                                 </li>
                             </ul>
@@ -188,13 +158,13 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link {{ Route::currentRouteName() == 'penjadwalan.index' ? 'active' : '' }}">
                                 <i class="nav-icon far fa-calendar-check"></i>
-                                <p>Penjadwalan</p>
+                                <p>Penduduk</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link {{ Route::currentRouteName() == 'penilaian.index' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-chart-bar"></i>
-                                <p>Penilaian<span class="right badge badge-danger">New</span></p>
+                                <p>Permintaan Surat<span class="right badge badge-danger">New</span></p>
                             </a>
                         </li>
                     </ul>

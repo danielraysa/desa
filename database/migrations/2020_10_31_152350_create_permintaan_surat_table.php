@@ -15,9 +15,9 @@ class CreatePermintaanSuratTable extends Migration
     {
         Schema::create('permintaan_surat', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->nullable();
+            $table->integer('user_id')->nullable();
             $table->string('no_ktp');
-            $table->int('tipe_surat');
+            $table->integer('tipe_surat');
             $table->string('status');
             $table->timestamps();
         });
