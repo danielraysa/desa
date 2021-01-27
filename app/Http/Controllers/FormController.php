@@ -5,8 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Penduduk;
 use App\Models\PermintaanSurat;
+use App\Models\JenisSurat;
 class FormController extends Controller
 {
+    public function permintaan_surat(){
+        $surat = JenisSurat::all();
+		return view('pages.surat', compact('surat'));
+    }
+    public function permintaan_surat_id($id){
+        $surat = JenisSurat::find($id);
+		return view('form.isian', compact('surat'));
+    }
+    public function permintaan_surat_kirim(Request $request, $id){
+        $surat = JenisSurat::find($id);
+        $penduduk = Penduduk::where('nik', $request->no_ktp)->get()->first();
+        if(!$penduduk){
+            return redirect()->back()->with('error', 'Nomor induk/KTP tidak terdaftar');
+        }
+        $permintaan = PermintaanSurat::create([
+            'user_id' => $penduduk->id,
+            'no_ktp' => $request->no_ktp,
+            'tipe_surat' => $id,
+            'status' => 'menunggu',
+        ]);
+		return redirect('sukses')->with('sukses', 'Permintaan surat anda akan segera diproses');
+		// return view('form.isian', compact('surat'));
+    }
     public function skck(){
 		return view('form/skck');
     }

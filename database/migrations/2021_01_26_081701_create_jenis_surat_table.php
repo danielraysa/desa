@@ -16,8 +16,9 @@ class CreateJenisSuratTable extends Migration
         Schema::create('jenis_surat', function (Blueprint $table) {
             $table->id();
             $table->string('nama_surat');
-            $table->string('kegunaan');
-            $table->string('status');
+            $table->string('kegunaan')->nullable();
+            $table->string('blade_path')->nullable();
+            $table->string('status')->default('aktif');
             $table->timestamps();
         });
     }

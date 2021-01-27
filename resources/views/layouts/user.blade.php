@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>@yield('title')</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/img/logo.png" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo.png') }}" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -16,7 +16,7 @@
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/') }}">Beranda</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/surat') }}">Layanan Surat</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/layanan-surat') }}">Layanan Surat</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/berita') }}">Berita</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/pemdes') }}">Pemdes</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url('/galeri') }}">Galeri</a></li>
@@ -52,6 +52,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="{{ asset('js/scripts.js') }}"></script>
     </body>
 </html>

@@ -18,7 +18,7 @@ class CreatePendudukTable extends Migration
             $table->integer('user_id')->nullable();
             $table->string('nik')->nullable();
             $table->string('no_kk')->nullable();
-            $table->string('nama_lengkap')->nullable();
+            $table->string('nama_lengkap');
             $table->date('tanggal_lahir')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->string('alamat')->nullable();

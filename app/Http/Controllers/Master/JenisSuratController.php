@@ -42,6 +42,7 @@ class JenisSuratController extends Controller
         $jenis_surat = JenisSurat::create([
             'nama_surat' => $request->nama_surat,
             'kegunaan' => $request->kegunaan,
+            'blade_path' => $request->blade_path,
             'status' => 'aktif',
         ]);
         return redirect()->route('jenis-surat.index')->with('status', 'Berhasil menambah data');
@@ -80,8 +81,9 @@ class JenisSuratController extends Controller
     {
         //
         $jenis_surat = JenisSurat::find($id)->update([
-            'email' => $request->nama_surat,
+            'nama_surat' => $request->nama_surat,
             'kegunaan' => $request->kegunaan,
+            'blade_path' => $request->blade_path,
         ]);
         return redirect()->route('jenis-surat.index')->with('status', 'Berhasil menambah data');
     }

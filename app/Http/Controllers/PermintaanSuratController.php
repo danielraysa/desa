@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\PermintaanSurat;
+use App\Models\JenisSurat;
+use App\Models\Penduduk;
+use PDF;
 class PermintaanSuratController extends Controller
 {
     /**
@@ -14,6 +17,9 @@ class PermintaanSuratController extends Controller
     public function index()
     {
         //
+        $permintaan_surat = PermintaanSurat::with('jns_surat','pemohon')->get();
+        // dd($permintaan_surat);
+        return view('admin.surat', compact('permintaan_surat'));
     }
 
     /**
@@ -80,5 +86,15 @@ class PermintaanSuratController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cetak($id)
+    {
+        // $jeniss_surat = JenisSurat::find($jenis);
+        $permintaan = PermintaanSurat::with('jns_surat','pemohon')->find($id);
+        $blade_path = $permintaan->jns_surat->blade_path;
+        $pdf = PDF::loadView($blade_path, ['data' => $permintaan]);
+
+        return $pdf->stream();
     }
 }

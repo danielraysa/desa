@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\JenisSurat;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $jenis_surat = JenisSurat::get()->take(3);
+        return view('home', compact('jenis_surat'));
     }
 
     public function admin()

@@ -85,6 +85,10 @@
                     <label>Kegunaan</label>
                     <textarea name="kegunaan" class="form-control"></textarea>
                 </div>
+                <div class="form-group">
+                    <label>Blade path</label>
+                    <input type="text" name="blade_path" class="form-control" placeholder="(untuk developer)" />
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -115,6 +119,10 @@
                 <div class="form-group">
                     <label>Kegunaan</label>
                     <textarea name="kegunaan" class="form-control">{{ $item->kegunaan }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Blade path</label>
+                    <input type="text" name="blade_path" class="form-control" value="{{ $item->blade_path }}" />
                 </div>
             </div>
             <div class="modal-footer">
