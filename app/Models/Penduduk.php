@@ -11,4 +11,12 @@ class Penduduk extends Model
 
     protected $table = 'penduduk';
     protected $guarded = [];
+
+    public function jenis_kel()
+    {
+        if($this->jenis_kelamin == 'L'){
+            return 'Laki-laki';
+        }
+        return 'Perempuan';
+    }
 }
