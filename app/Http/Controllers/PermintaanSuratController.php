@@ -93,6 +93,9 @@ class PermintaanSuratController extends Controller
         // $jeniss_surat = JenisSurat::find($jenis);
         $permintaan = PermintaanSurat::with('jns_surat','pemohon')->find($id);
         $blade_path = $permintaan->jns_surat->blade_path;
+        if($blade_path == null){
+            abort(404, "Format surat belum dibuat.");
+        }
         $pdf = PDF::loadView($blade_path, ['data' => $permintaan]);
 
         return $pdf->stream();

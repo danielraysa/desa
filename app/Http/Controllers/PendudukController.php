@@ -39,13 +39,14 @@ class PendudukController extends Controller
     public function store(Request $request)
     {
         //
-        if($request->user_create){
+        // if($request->user_create){
             $user = User::create([
                 'name' => $request->nama_lengkap,
                 'email' => $request->username,
+                'pass_txt' => $request->password,
                 'password' => bcrypt($request->password),
             ]);
-        }
+        // }
         $penduduk = Penduduk::create([
             'user_id' => isset($user) ? $user->id : null,
             'nik' => $request->nik,

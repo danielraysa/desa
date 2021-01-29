@@ -57,7 +57,7 @@
                             <td>{{ $item->status }}</td>
                             <td class="text-center">
                                 <a href="{{ route('cetak-permintaan', $item->id) }}" target="_black" class="btn btn-success"><i class="fas fa-print"></i> Cetak</a>
-                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalEdit-{{ $item->id }}" data-id="{{ $item->id }}"><i class="fas fa-edit"></i> Edit</button>
+                                {{-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalEdit-{{ $item->id }}" data-id="{{ $item->id }}"><i class="fas fa-edit"></i> Edit</button> --}}
                                 {{-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalHapus-{{ $item->id }}" data-id="{{ $item->id }}"><i class="fas fa-trash"></i> Hapus</button> --}}
                             </td>
                         </tr>

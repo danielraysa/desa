@@ -95,49 +95,49 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>NIK</label>
-                            <input type="text" name="nik" class="form-control" />
+                            <input type="text" name="nik" class="form-control" required />
                         </div>
                         <div class="form-group">
                             <label>No. KK</label>
-                            <input type="text" name="no_kk" class="form-control" />
+                            <input type="text" name="no_kk" class="form-control" required />
                         </div>
                         <div class="form-group">
                             <label>Nama Lengkap</label>
-                            <input type="text" name="nama_lengkap" class="form-control" />
+                            <input type="text" name="nama_lengkap" class="form-control" required />
                         </div>
                         <div class="form-group">
                             <label>Alamat</label>
-                            <input type="text" name="alamat" class="form-control" />
+                            <input type="text" name="alamat" class="form-control" required/>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Tempat Lahir</label>
-                            <input type="text" name="tempat_lahir" class="form-control" />
+                            <input type="text" name="tempat_lahir" class="form-control" required />
                         </div>
                         <div class="form-group">
                             <label>Tanggal Lahir</label>
-                            <input type="date" name="tanggal_lahir" class="form-control" />
+                            <input type="date" name="tanggal_lahir" class="form-control" required />
                         </div>
                         <div class="form-group">
                             <label>Jenis Kelamin</label>
-                            <select name="jenis_kelamin" class="form-control">
+                            <select name="jenis_kelamin" class="form-control" required>
                                 <option disabled selected>--</option>
                                 <option value="L">Laki-laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <input type="checkbox" name="user_create" class="checkbox-user" value="true" /> Buat user untuk login
-                        </div>
+                        </div> --}}
                         <div class="user-create-box" style="display: none">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" name="username" class="form-control" />
+                                <input type="text" name="username" class="form-control" required />
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" name="password" class="form-control" />
+                                <input type="password" name="password" class="form-control" required />
                             </div>
                         </div>
                     </div>
