@@ -23,6 +23,8 @@ class CreatePendudukTable extends Migration
             $table->string('tempat_lahir')->nullable();
             $table->string('alamat')->nullable();
             $table->string('jenis_kelamin')->nullable();
+            $table->string('file_ktp')->nullable();
+            $table->string('file_kk')->nullable();
             $table->timestamps();
         });
     }

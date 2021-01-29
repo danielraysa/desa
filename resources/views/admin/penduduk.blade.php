@@ -33,6 +33,10 @@
                 $('.user-create-box').hide();
             }
         });
+        $('#nik').keyup(function(){
+            var value = $(this).val();
+            $('#username').val(value);
+        });
     });
 </script>
 @endpush
@@ -95,7 +99,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>NIK</label>
-                            <input type="text" name="nik" class="form-control" required />
+                            <input type="text" name="nik" id="nik" class="form-control" required />
                         </div>
                         <div class="form-group">
                             <label>No. KK</label>
@@ -130,10 +134,11 @@
                         {{-- <div class="form-group">
                             <input type="checkbox" name="user_create" class="checkbox-user" value="true" /> Buat user untuk login
                         </div> --}}
-                        <div class="user-create-box" style="display: none">
+                        {{-- <div class="user-create-box" style="display: none"> --}}
+                        <div class="user-create-box">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" name="username" class="form-control" required />
+                                <input type="text" name="username" id="username" class="form-control" required readonly/>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
@@ -208,7 +213,7 @@
                         <div class="user-create-box" style="display: none">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" name="username" class="form-control" />
+                                <input type="text" name="username" class="form-control"/>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>

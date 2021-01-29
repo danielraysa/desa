@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Penduduk;
 use App\Models\PermintaanSurat;
 use App\Models\JenisSurat;
+use App\Models\User;
+use Storage;
+
 class FormController extends Controller
 {
     public function permintaan_surat(){
@@ -13,8 +16,10 @@ class FormController extends Controller
 		return view('pages.surat', compact('surat'));
     }
     public function permintaan_surat_id($id){
+        // return phpinfo();
         $surat = JenisSurat::find($id);
-		return view('form.isian', compact('surat'));
+        $data_user = User::with('data_penduduk')->find(auth()->id());
+		return view('form.isian', compact('surat', 'data_user'));
     }
     public function permintaan_surat_kirim(Request $request, $id){
         $surat = JenisSurat::find($id);
@@ -22,6 +27,24 @@ class FormController extends Controller
         if(!$penduduk){
             return redirect()->back()->with('error', 'Nomor induk/KTP tidak terdaftar');
         }
+        if($penduduk->file_ktp == null && isset($request->file_ktp)){
+            $upload_ktp = $request->file('file_ktp');
+            // $path_ktp = Storage::disk('public')->putFile('ktp', $request->file('file_ktp'));
+            $path_ktp = $request->file('file_ktp')->store('ktp');
+            $update_ktp = Penduduk::where('user_id', auth()->id())->update([
+                'file_ktp' => $path_ktp
+            ]);
+            // dd($path_ktp, $update_ktp);
+        }
+        if($penduduk->file_kk == null && isset($request->file_kk)){
+            $upload_kk = $request->file('file_kk');
+            // $path_kk = Storage::disk('public')->putFile('kk', $request->file('file_kk'));
+            $path_kk = $request->file('file_kk')->store('kk');
+            $update_kk = Penduduk::where('user_id', auth()->id())->update([
+                'file_kk' => $path_kk
+            ]);
+        }
+        // $path = Storage::disk('s3')->putFile('videos', $request->file('upload_file'), 'public');
         $permintaan = PermintaanSurat::create([
             'user_id' => $penduduk->id,
             'no_ktp' => $request->no_ktp,

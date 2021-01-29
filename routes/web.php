@@ -29,8 +29,6 @@ Route::get('galeri', [PagesController::class, 'galeri']);
 Route::get('statistik', [PagesController::class, 'statistik']);
 Route::get('pengaduan', [PagesController::class, 'pengaduan']);
 Route::get('layanan-surat', [FormController::class, 'permintaan_surat'])->name('layanan-surat');;
-Route::get('layanan-surat/{id}', [FormController::class, 'permintaan_surat_id'])->name('layanan-surat-id');;
-Route::post('layanan-surat/{id}/kirim', [FormController::class, 'permintaan_surat_kirim'])->name('layanan-surat-kirim');;
 Route::get('skck', [FormController::class, 'skck'])->name('ktp-skck');;
 Route::get('tidak-mampu', [FormController::class, 'tidakMampu'])->name('ktp-tidak-mampu');;
 Route::get('izin-keramaian', [FormController::class, 'izinKeramaian'])->name('ktp-izin-keramaian');;
@@ -40,8 +38,12 @@ Route::post('cek-ktp-tidak-mampu', [FormController::class, 'cekKtpTidakMampu'])-
 Route::post('cek-ktp-izin-keramaian', [FormController::class, 'cekKtpIzinKeramaian'])->name('cek-ktp-izin-keramaian');
 
 // Route::get('login', [PagesController::class, 'login']);
-Auth::routes();
+Auth::routes(['register'=>false]);
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('layanan-surat/{id}', [FormController::class, 'permintaan_surat_id'])->name('layanan-surat-id');
+    Route::post('layanan-surat/{id}/kirim', [FormController::class, 'permintaan_surat_kirim'])->name('layanan-surat-kirim');
+
     Route::prefix('admin')->group(function () {
         Route::get('home', [HomeController::class, 'admin']);
         Route::resource('user', UserController::class);
