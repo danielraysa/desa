@@ -29,8 +29,8 @@ class FormController extends Controller
         }
         if($penduduk->file_ktp == null && isset($request->file_ktp)){
             $upload_ktp = $request->file('file_ktp');
-            // $path_ktp = Storage::disk('public')->putFile('ktp', $request->file('file_ktp'));
-            $path_ktp = $request->file('file_ktp')->store('ktp');
+            $path_ktp = Storage::disk('public')->putFile('ktp', $request->file('file_ktp'));
+            // $path_ktp = $request->file('file_ktp')->store('ktp');
             $update_ktp = Penduduk::where('user_id', auth()->id())->update([
                 'file_ktp' => $path_ktp
             ]);
@@ -38,8 +38,8 @@ class FormController extends Controller
         }
         if($penduduk->file_kk == null && isset($request->file_kk)){
             $upload_kk = $request->file('file_kk');
-            // $path_kk = Storage::disk('public')->putFile('kk', $request->file('file_kk'));
-            $path_kk = $request->file('file_kk')->store('kk');
+            $path_kk = Storage::disk('public')->putFile('kk', $request->file('file_kk'));
+            // $path_kk = $request->file('file_kk')->store('kk');
             $update_kk = Penduduk::where('user_id', auth()->id())->update([
                 'file_kk' => $path_kk
             ]);
