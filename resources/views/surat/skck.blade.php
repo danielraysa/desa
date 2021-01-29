@@ -56,5 +56,29 @@
     <br>
     <p>Demikian surat ini dibuat, untuk dipergunakan sebagaimana mestinya.</p>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table style="width: 100%; text-align: center">
+        <tr>
+            <td style="width: 50%">
+                <p>Pemohon</p>
+                <br>
+                <br>
+                <br>
+                <p>{{ $data->pemohon->nama_lengkap }}</p>
+            </td>
+            <td style="width: 50%">
+                <p style="margin: 0">Mojokerto, {{ date('d M Y') }}</p>
+                <p style="margin: 0">a.n Kepala Desa</p>
+                <br>
+                <br>
+                <br>
+                <p>{{ 'Kepala Desa' }}</p>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
